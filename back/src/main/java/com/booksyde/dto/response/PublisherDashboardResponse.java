@@ -1,0 +1,1 @@
+package com.booksyde.dto.response; import java.util.List; public record PublisherDashboardResponse(long works,long volumes,long totalViews,List<BookResponse> latestWorks){}

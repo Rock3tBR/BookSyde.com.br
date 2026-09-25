@@ -1,0 +1,1 @@
+package com.booksyde.dto.response; import java.time.OffsetDateTime; import java.util.UUID; public record ReadingProgressResponse(UUID volumeId,int pageIndex,OffsetDateTime completedAt,OffsetDateTime updatedAt){}

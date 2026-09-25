@@ -1,0 +1,121 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+.absolute{position:absolute} body{background:#1d1b20;color:white;font:13px system-ui;display:flex;gap:42px;align-items:flex-start;padding:50px}
+.book{width:180px;aspect-ratio:7/8;position:relative}
+.cl{position:relative;isolation:isolate;width:100%;height:100%;--book-thickness:18px;perspective:1050px}
+/* The closed book is one solid 3D object. Front: z=0; back: z=-thickness.
+   Page and spine planes are centered between them and meet the cover edges. */
+.closed-book-3d {
+  --book-thickness: clamp(11px, 1vw, 18px);
+  perspective: 1050px;
+  overflow: visible;
+}
+
+.closed-book-3d__shadow {
+  left: 19%;
+  right: 18%;
+  bottom: 17%;
+  height: 9%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .56);
+  filter: blur(13px);
+  opacity: .8;
+  transition: bottom .48s ease, opacity .48s ease, transform .48s ease;
+}
+
+.closed-book-3d__body {
+  width: 58%;
+  height: 76%;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50% 0;
+  transition: transform .48s cubic-bezier(.22,.8,.2,1);
+  will-change: transform;
+}
+
+.book-3d-body {
+  transform: translate(-50%, -50%) rotateX(58deg) rotateZ(-7deg);
+}
+
+.book-3d-standing-body {
+  transform: translate(-50%, -53%) rotateX(7deg) rotateY(-24deg);
+}
+
+.closed-book-3d__back {
+  inset: -1.2%;
+  border-radius: 2px 4px 4px 2px;
+  background: var(--book-cover-tone);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.34);
+  transform: translateZ(calc(-1 * var(--book-thickness)));
+  backface-visibility: hidden;
+}
+
+.closed-book-3d__front {
+  inset: -1.2%;
+  overflow: hidden;
+  border-radius: 2px 4px 4px 2px;
+  border: 1px solid rgba(0,0,0,.45);
+  background: var(--book-cover-tone);
+  box-shadow: inset 3px 0 5px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.18);
+  transform: translateZ(1px);
+  backface-visibility: hidden;
+}
+
+.closed-book-3d__cover-finish {
+  background: linear-gradient(90deg, rgba(0,0,0,.27), rgba(255,255,255,.055) 5%, transparent 11%, transparent 87%, rgba(0,0,0,.13));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.055);
+}
+
+.closed-book-3d__pages {
+  background-color: #d8c6a4;
+  background-image: repeating-linear-gradient(to bottom, rgba(88,66,43,.25) 0 1px, rgba(255,248,228,.7) 1px 3px);
+  box-shadow: inset 0 0 2px rgba(42,30,18,.28);
+  backface-visibility: visible;
+}
+
+.closed-book-3d__pages--top,
+.closed-book-3d__pages--bottom {
+  left: 1.5%;
+  right: 1.5%;
+  height: var(--book-thickness);
+  transform: translateY(-50%) translateZ(calc(var(--book-thickness) / -2)) rotateX(90deg);
+}
+
+.closed-book-3d__pages--top { top: 1.5%; }
+.closed-book-3d__pages--bottom { top: 98.5%; }
+
+.closed-book-3d__pages--fore-edge,
+.closed-book-3d__spine {
+  top: 1.5%;
+  bottom: 1.5%;
+  width: var(--book-thickness);
+  transform: translateX(-50%) translateZ(calc(var(--book-thickness) / -2)) rotateY(90deg);
+}
+
+.closed-book-3d__pages--fore-edge {
+  left: 98.5%;
+  background-image: repeating-linear-gradient(to right, rgba(88,66,43,.26) 0 1px, rgba(255,248,228,.72) 1px 3px);
+}
+
+.closed-book-3d__spine {
+  left: 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(0,0,0,.5), transparent 22%, rgba(255,255,255,.12) 75%, rgba(0,0,0,.28)), var(--book-cover-tone);
+  box-shadow: inset -2px 0 4px rgba(0,0,0,.2);
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .realistic-book-model:hover .book-3d-body {
+    transform: translate(-50%, -53%) rotateX(7deg) rotateY(-24deg);
+  }
+  .realistic-book-model:hover .closed-book-3d__shadow {
+    bottom: 10%;
+    opacity: .9;
+    transform: scale(.82);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .closed-book-3d__body,
+  .closed-book-3d__shadow { transition: none !important; }
+}
+
+</style></head><body><div><p>A volta ao mundo lying</p><div class="book"><div class="cl closed-book-3d"><div class="closed-book-3d__shadow"></div><div class="closed-book-3d__body book-3d-body" style="--book-cover-tone:#dcae38"><div class="closed-book-3d__back absolute"></div><div class="closed-book-3d__pages closed-book-3d__pages--top absolute"></div><div class="closed-book-3d__pages closed-book-3d__pages--bottom absolute"></div><div class="closed-book-3d__pages closed-book-3d__pages--fore-edge absolute"></div><div class="closed-book-3d__spine absolute"></div><div class="closed-book-3d__front absolute" style="background:#dcae38;display:grid;place-items:center;"><b style="font:17px Georgia;text-align:center;color:#24191a;">A volta ao mundo</b><div class="closed-book-3d__cover-finish" style="position:absolute;inset:0"></div></div></div></div></div><div><p>Sherlock Holmes lying</p><div class="book"><div class="cl closed-book-3d"><div class="closed-book-3d__shadow"></div><div class="closed-book-3d__body book-3d-body" style="--book-cover-tone:#304a58"><div class="closed-book-3d__back absolute"></div><div class="closed-book-3d__pages closed-book-3d__pages--top absolute"></div><div class="closed-book-3d__pages closed-book-3d__pages--bottom absolute"></div><div class="closed-book-3d__pages closed-book-3d__pages--fore-edge absolute"></div><div class="closed-book-3d__spine absolute"></div><div class="closed-book-3d__front absolute" style="background:#304a58;display:grid;place-items:center;"><b style="font:17px Georgia;text-align:center;color:#24191a;">Sherlock Holmes</b><div class="closed-book-3d__cover-finish" style="position:absolute;inset:0"></div></div></div></div></div><div><p>A guerra dos mundos standing</p><div class="book"><div class="cl closed-book-3d"><div class="closed-book-3d__shadow"></div><div class="closed-book-3d__body book-3d-standing-body" style="--book-cover-tone:#e4d9ca"><div class="closed-book-3d__back absolute"></div><div class="closed-book-3d__pages closed-book-3d__pages--top absolute"></div><div class="closed-book-3d__pages closed-book-3d__pages--bottom absolute"></div><div class="closed-book-3d__pages closed-book-3d__pages--fore-edge absolute"></div><div class="closed-book-3d__spine absolute"></div><div class="closed-book-3d__front absolute" style="background:#e4d9ca;display:grid;place-items:center;"><b style="font:17px Georgia;text-align:center;color:#24191a;">A guerra dos mundos</b><div class="closed-book-3d__cover-finish" style="position:absolute;inset:0"></div></div></div></div></div></body></html>

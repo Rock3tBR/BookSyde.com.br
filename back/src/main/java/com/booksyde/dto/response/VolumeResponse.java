@@ -1,0 +1,1 @@
+package com.booksyde.dto.response; import java.time.OffsetDateTime; import java.util.UUID; public record VolumeResponse(UUID id,UUID mangaId,int number,String title,String fileFormat,int pageCount,boolean published,String coverUrl,String sourceType,String sourcePath,String unitKind,OffsetDateTime createdAt){}

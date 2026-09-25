@@ -1,0 +1,1 @@
+package com.booksyde.dto.request; import jakarta.validation.constraints.*; public record UpdateProfileRequest(@NotBlank @Size(max=100) String displayName,@Size(max=2000) String avatarUrl){}

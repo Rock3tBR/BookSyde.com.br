@@ -1,0 +1,23 @@
+.booksyde-mascot {
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  contain: layout paint;
+}
+
+.booksyde-mascot-sprite {
+  width: 100%;
+  height: 100%;
+  background-image: url("/brand/mascot/reading-frames-v3.webp");
+  background-size: 800% 600%;
+  background-repeat: no-repeat;
+  background-position: 0% 0%;
+  animation: booksyde-mascot-reading 4s steps(1, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .booksyde-mascot-sprite {
+    animation: none;
+    background-position: 0% 0%;
+  }
+}

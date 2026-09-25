@@ -1,0 +1,1 @@
+package com.booksyde.repository; import com.booksyde.entity.MarketplaceOrderItemEntity; import java.util.*; import org.springframework.data.jpa.repository.JpaRepository; public interface MarketplaceOrderItemRepository extends JpaRepository<MarketplaceOrderItemEntity,UUID>{ List<MarketplaceOrderItemEntity> findAllByOrderIdOrderById(UUID orderId); }

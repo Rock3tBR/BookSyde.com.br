@@ -1,0 +1,1 @@
+package com.booksyde.dto.request; import jakarta.validation.constraints.*; public record ReviewRequest(@Min(1) @Max(5) int rating,@Size(max=4000) String body){}

@@ -1,0 +1,1 @@
+package com.booksyde.dto.request; import jakarta.validation.constraints.*; public record CreateVolumeRequest(@Min(0) int number,@Size(max=180) String title,@NotBlank @Size(max=30) String fileFormat,@Min(0) int pageCount,boolean published,@Size(max=2000) String coverUrl,@Size(max=50) String sourceType,@Size(max=3000) String sourcePath,@NotBlank @Size(max=30) String unitKind){}

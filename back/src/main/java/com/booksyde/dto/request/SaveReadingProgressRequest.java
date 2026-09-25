@@ -1,0 +1,1 @@
+package com.booksyde.dto.request; import jakarta.validation.constraints.Min; public record SaveReadingProgressRequest(@Min(0) int pageIndex, boolean completed) {}

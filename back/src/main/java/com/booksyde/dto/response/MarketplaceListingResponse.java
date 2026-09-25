@@ -1,0 +1,1 @@
+package com.booksyde.dto.response; import java.util.UUID; public record MarketplaceListingResponse(UUID id,UUID sellerId,UUID mangaId,String title,String author,String category,String coverUrl,int priceCents,String currency,String targetType,String workType){}

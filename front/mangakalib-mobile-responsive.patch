@@ -1,0 +1,650 @@
+diff --git a/src/components/CommunityDock.tsx b/src/components/CommunityDock.tsx
+index 1692643..405ccdf 100644
+--- a/src/components/CommunityDock.tsx
++++ b/src/components/CommunityDock.tsx
+@@ -158,9 +158,9 @@ export function CommunityDock() {
+ 
+   return (
+     <Sheet>
+-      <div className="fixed inset-x-0 bottom-0 z-40 bg-background/92 pb-[env(safe-area-inset-bottom)] shadow-[0_-10px_30px_rgb(0_0_0/0.16)] backdrop-blur-xl">
+-        <div className="mx-auto flex h-12 w-full max-w-[1920px] items-center px-3 text-xs text-muted-foreground sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+-          <div className="flex min-w-0 items-center gap-2">
++      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border/40 bg-background/94 pb-[env(safe-area-inset-bottom)] shadow-[0_-10px_30px_rgb(0_0_0/0.16)] backdrop-blur-xl">
++        <div className="mx-auto flex h-11 w-full max-w-[1920px] items-center px-3 text-[11px] text-muted-foreground sm:h-12 sm:px-6 sm:text-xs lg:px-8 xl:px-10 2xl:px-12">
++          <div className="hidden min-w-0 items-center gap-2 min-[360px]:flex">
+             <span className="truncate font-medium text-foreground/90">MangakaLib</span>
+             <span>|</span>
+             <span className="text-emerald-400">Online</span>
+@@ -169,7 +169,7 @@ export function CommunityDock() {
+           <SheetTrigger asChild>
+             <button
+               type="button"
+-              className="ml-auto inline-flex items-center gap-2 whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-foreground transition hover:bg-muted/50 hover:text-primary"
++              className="ml-auto inline-flex min-h-9 items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium text-foreground transition hover:bg-muted/50 hover:text-primary sm:gap-2 sm:px-3 sm:py-1.5 sm:text-sm"
+               aria-label="Abrir amigos e conversas"
+             >
+               <MessageCircle className="size-4" />
+@@ -189,7 +189,7 @@ export function CommunityDock() {
+ 
+       <SheetContent
+         side="right"
+-        className="flex h-dvh w-[min(430px,100vw)] max-w-full flex-col border-l border-border/50 sm:w-[430px] sm:max-w-[430px]"
++        className="flex h-dvh w-full max-w-full flex-col border-l border-border/50 sm:w-[430px] sm:max-w-[430px]"
+       >
+         <SheetHeader>
+           <SheetTitle>Comunidade</SheetTitle>
+diff --git a/src/components/SiteHeader.tsx b/src/components/SiteHeader.tsx
+index 830c654..d1120a0 100644
+--- a/src/components/SiteHeader.tsx
++++ b/src/components/SiteHeader.tsx
+@@ -132,14 +132,14 @@ export function SiteHeader() {
+ 
+   return (
+     <header className="sticky top-0 z-40 bg-transparent pt-[env(safe-area-inset-top)]">
+-      <div className="mx-auto my-2 flex h-16 w-[calc(100%_-_1rem)] max-w-[1920px] items-center gap-3 rounded-[1.35rem] border border-border/55 bg-card/95 px-3 shadow-[0_18px_60px_-38px_rgba(0,0,0,.92)] backdrop-blur-xl supports-[backdrop-filter]:bg-card/82 sm:h-[72px] sm:w-[calc(100%_-_2rem)] sm:px-5 lg:my-3 lg:w-[calc(100%_-_3rem)] lg:rounded-[1.75rem] lg:px-5 xl:w-[calc(100%_-_4rem)] xl:px-6 2xl:w-[calc(100%_-_5rem)]">
++      <div className="mx-2 my-2 flex min-h-14 max-w-[1920px] items-center gap-2 rounded-[1.15rem] border border-border/55 bg-card/95 px-2.5 py-2 shadow-[0_18px_60px_-38px_rgba(0,0,0,.92)] backdrop-blur-xl supports-[backdrop-filter]:bg-card/82 sm:mx-4 sm:min-h-[72px] sm:gap-3 sm:rounded-[1.35rem] sm:px-4 lg:mx-6 lg:my-3 lg:rounded-[1.75rem] lg:px-5 xl:mx-8 xl:px-6 2xl:mx-auto">
+         {/* Mobile: logo compacta + busca */}
+         <div className="flex min-w-0 flex-1 items-center gap-2 xl:hidden">
+-          <Link to="/" className="shrink-0" aria-label="Ir para a home">
++          <Link to="/" className="hidden shrink-0 min-[360px]:block" aria-label="Ir para a home">
+             <img
+               src="/mangaka-icon-192.png?v=4"
+               alt="Mangaka"
+-              className="size-10 object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)]"
++              className="size-9 object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)] sm:size-10"
+             />
+           </Link>
+           <HeaderSearch value={headerSearch} onChange={setHeaderSearch} onSubmit={handleSearch} compact />
+@@ -274,7 +274,7 @@ export function SiteHeader() {
+               <Menu className="size-5" />
+             </Button>
+           </SheetTrigger>
+-          <SheetContent className="w-[88%] max-w-sm border-l border-border/60 p-5">
++          <SheetContent className="w-[min(92vw,24rem)] max-w-sm overflow-y-auto border-l border-border/60 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))] sm:p-5">
+             <SheetHeader className="text-left">
+               <div className="flex items-center gap-3">
+                 <img src="/mangaka-icon-192.png?v=4" alt="" className="size-11 object-contain" />
+@@ -380,8 +380,8 @@ function HeaderSearch({
+         type="search"
+         value={value}
+         onChange={(event) => onChange(event.target.value)}
+-        placeholder="Buscar mangás, HQs, livros..."
+-        className="h-11 w-full rounded-[1rem] border border-border/45 bg-background/45 pl-10 pr-4 text-sm outline-none transition placeholder:text-muted-foreground/75 hover:bg-background/60 focus:border-primary/30 focus:bg-background/65 focus:ring-2 focus:ring-primary/12"
++        placeholder={compact ? "Buscar obras..." : "Buscar mangás, HQs, livros..."}
++        className="h-10 w-full rounded-[0.95rem] border border-border/45 bg-background/45 pl-9 pr-3 text-base outline-none transition placeholder:text-muted-foreground/75 hover:bg-background/60 focus:border-primary/30 focus:bg-background/65 focus:ring-2 focus:ring-primary/12 sm:h-11 sm:rounded-[1rem] sm:pl-10 sm:pr-4 sm:text-sm"
+       />
+     </form>
+   );
+diff --git a/src/components/ui/dialog.tsx b/src/components/ui/dialog.tsx
+index 8ed559e..492e79e 100644
+--- a/src/components/ui/dialog.tsx
++++ b/src/components/ui/dialog.tsx
+@@ -38,7 +38,7 @@ const DialogContent = React.forwardRef<
+     <DialogPrimitive.Content
+       ref={ref}
+       className={cn(
+-        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:rounded-lg",
++        "fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100dvh-1rem)] w-[calc(100%_-_1rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto rounded-2xl border bg-background p-4 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:max-h-[90dvh] sm:w-full sm:p-6 sm:rounded-lg",
+         className,
+       )}
+       {...props}
+diff --git a/src/components/ui/sheet.tsx b/src/components/ui/sheet.tsx
+index 0aedeb7..a10e5b6 100644
+--- a/src/components/ui/sheet.tsx
++++ b/src/components/ui/sheet.tsx
+@@ -31,16 +31,16 @@ const SheetOverlay = React.forwardRef<
+ SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
+ 
+ const sheetVariants = cva(
+-  "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
++  "fixed z-50 gap-4 overflow-y-auto bg-background px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))] shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out sm:p-6",
+   {
+     variants: {
+       side: {
+         top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+         bottom:
+           "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+-        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
++        left: "inset-y-0 left-0 h-full w-[min(92vw,24rem)] border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+         right:
+-          "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
++          "inset-y-0 right-0 h-full w-[min(92vw,24rem)] border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+       },
+     },
+     defaultVariants: {
+diff --git a/src/routes/admin.tsx b/src/routes/admin.tsx
+index e0d0dbb..7445c27 100644
+--- a/src/routes/admin.tsx
++++ b/src/routes/admin.tsx
+@@ -738,13 +738,13 @@ export function AdminWorkspace({
+   }
+ 
+   return (
+-    <main className="mx-auto w-full max-w-5xl px-3 py-7 sm:px-4 sm:py-10">
+-      <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
++    <main className="mx-auto w-full max-w-5xl px-3 pb-[calc(5.5rem+env(safe-area-inset-bottom))] pt-5 sm:px-4 sm:py-10">
++      <div className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+         <div>
+           <p className="text-sm font-medium text-primary">
+             {mode === "studio" ? "Criação e personalização" : "Painel de controle"}
+           </p>
+-          <h1 className="font-display text-3xl">
++          <h1 className="font-display text-[1.75rem] leading-tight sm:text-3xl">
+             {mode === "studio" ? "Estúdio Mangaka" : "Administração"}
+           </h1>
+         </div>
+@@ -753,24 +753,24 @@ export function AdminWorkspace({
+       <Tabs
+         defaultValue={mode === "studio" ? (initialTab ?? (obra ? "volumes" : "catalog")) : "users"}
+       >
+-        <TabsList className="grid h-auto w-full grid-cols-3 gap-1">
++        <TabsList className="flex h-auto w-full gap-1 overflow-x-auto rounded-[1.1rem] p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-3">
+           {mode === "admin" ? (
+-            <TabsTrigger value="users" className="px-1 text-xs sm:px-3 sm:text-sm">
++            <TabsTrigger value="users" className="min-h-11 min-w-[108px] flex-1 px-2 text-xs sm:min-w-0 sm:px-3 sm:text-sm">
+               Usuários
+             </TabsTrigger>
+           ) : null}
+           {mode === "admin" ? (
+-            <TabsTrigger value="catalog" className="px-1 text-xs sm:px-3 sm:text-sm">
++            <TabsTrigger value="catalog" className="min-h-11 min-w-[108px] flex-1 px-2 text-xs sm:min-w-0 sm:px-3 sm:text-sm">
+               Moderação
+             </TabsTrigger>
+           ) : null}
+-          {mode === "studio" ? <TabsTrigger value="catalog">Minhas obras</TabsTrigger> : null}
+-          {mode === "studio" ? <TabsTrigger value="mangas">Criar obra</TabsTrigger> : null}
++          {mode === "studio" ? <TabsTrigger value="catalog" className="min-h-11 min-w-[112px] flex-1 px-2 text-xs sm:min-w-0 sm:text-sm">Minhas obras</TabsTrigger> : null}
++          {mode === "studio" ? <TabsTrigger value="mangas" className="min-h-11 min-w-[108px] flex-1 px-2 text-xs sm:min-w-0 sm:text-sm">Criar obra</TabsTrigger> : null}
+           {mode === "studio" ? (
+-            <TabsTrigger value="volumes">Adicionar conteúdo</TabsTrigger>
++            <TabsTrigger value="volumes" className="min-h-11 min-w-[132px] flex-1 px-2 text-xs sm:min-w-0 sm:text-sm">Adicionar conteúdo</TabsTrigger>
+           ) : null}
+           {mode === "admin" ? (
+-            <TabsTrigger value="donations" className="px-1 text-xs sm:px-3 sm:text-sm">
++            <TabsTrigger value="donations" className="min-h-11 min-w-[108px] flex-1 px-2 text-xs sm:min-w-0 sm:px-3 sm:text-sm">
+               Doações
+             </TabsTrigger>
+           ) : null}
+@@ -778,7 +778,7 @@ export function AdminWorkspace({
+ 
+         {mode === "admin" || mode === "studio" ? (
+           <TabsContent value="catalog" className="mt-6">
+-            <section className="ink-panel space-y-4 rounded-2xl p-4 sm:p-6">
++            <section className="ink-panel space-y-4 rounded-[1.2rem] p-3.5 sm:rounded-2xl sm:p-6">
+               <div>
+                 <h2 className="font-display text-lg">
+                   {mode === "studio" ? "Minhas obras" : "Obras do sistema"}
+@@ -820,7 +820,7 @@ export function AdminWorkspace({
+                     </div>
+ 
+                     {filteredPublicationWorks.length ? (
+-                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
++                      <div className="grid grid-cols-2 gap-2.5 sm:gap-4 lg:grid-cols-3">
+                         {filteredPublicationWorks.map((manga) => {
+                           const isSelected = manga.id === selectedWork?.id;
+ 
+@@ -831,7 +831,7 @@ export function AdminWorkspace({
+                               onClick={() => setMangaId(manga.id)}
+                               aria-label={`Selecionar ${manga.title}`}
+                               aria-pressed={isSelected}
+-                              className={`group relative overflow-hidden rounded-[1.25rem] border bg-card/55 text-left shadow-[0_18px_44px_-28px_rgba(0,0,0,0.9)] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
++                              className={`group relative overflow-hidden rounded-[1rem] border sm:rounded-[1.25rem] bg-card/55 text-left shadow-[0_18px_44px_-28px_rgba(0,0,0,0.9)] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                                 isSelected
+                                   ? "border-primary ring-2 ring-primary/20"
+                                   : "border-border/70 hover:-translate-y-1 hover:border-primary/35"
+diff --git a/src/routes/biblioteca.tsx b/src/routes/biblioteca.tsx
+index 0bcea76..d8c4d5d 100644
+--- a/src/routes/biblioteca.tsx
++++ b/src/routes/biblioteca.tsx
+@@ -162,31 +162,31 @@ function LibraryPage() {
+     );
+ 
+   return (
+-    <main className="mx-auto w-full max-w-6xl px-3 py-7 sm:px-4 sm:py-10">
+-      <section className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-card/75 p-5 shadow-[0_30px_80px_-42px_rgba(0,0,0,0.92)] backdrop-blur sm:p-7">
++    <main className="mx-auto w-full max-w-6xl px-3 pb-[calc(5.5rem+env(safe-area-inset-bottom))] pt-5 sm:px-4 sm:py-10">
++      <section className="relative overflow-hidden rounded-[1.45rem] border border-border/70 bg-card/75 p-4 sm:rounded-[2rem] sm:p-7 shadow-[0_30px_80px_-42px_rgba(0,0,0,0.92)] backdrop-blur sm:p-7">
+         <div className="absolute -left-12 top-0 size-48 rounded-full bg-primary/15 blur-3xl" />
+         <div className="relative">
+           <p className="text-sm font-medium text-primary">Seu espaço</p>
+-          <h1 className="mt-1 font-display text-4xl">Minha biblioteca</h1>
++          <h1 className="mt-1 font-display text-3xl sm:text-4xl">Minha biblioteca</h1>
+           <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">
+             Leituras, criações, favoritos e downloads organizados em uma experiência mais limpa.
+           </p>
+ 
+-          <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
++          <div className="mt-5 grid grid-cols-2 gap-2.5 sm:mt-6 sm:gap-3 xl:grid-cols-4">
+             {summary.map((item) => (
+-              <div key={item.label} className="rounded-[1.35rem] border border-border/70 bg-background/55 p-4">
+-                <p className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.16em] text-primary uppercase">
++              <div key={item.label} className="rounded-[1.1rem] border border-border/70 bg-background/55 p-3 sm:rounded-[1.35rem] sm:p-4">
++                <p className="inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.12em] text-primary uppercase sm:gap-2 sm:text-xs sm:tracking-[0.16em]">
+                   {item.icon}
+                   {item.label}
+                 </p>
+-                <p className="mt-2 text-2xl font-semibold">{item.value}</p>
++                <p className="mt-1.5 text-xl font-semibold sm:mt-2 sm:text-2xl">{item.value}</p>
+               </div>
+             ))}
+           </div>
+         </div>
+       </section>
+ 
+-      <Tabs defaultValue="progress" className="mt-8">
++      <Tabs defaultValue="progress" className="mt-6 sm:mt-8">
+         <TabsList className="grid h-auto w-full grid-cols-2 gap-1 rounded-[1.3rem] border border-border/70 bg-card/75 p-1 sm:grid-cols-4">
+           <LibraryTab value="progress" icon={<BookOpen />} label="Em andamento" count={data.inProgress.length} />
+           <LibraryTab value="completed" icon={<BookCheck />} label="Lidos" count={data.completed.length} />
+@@ -295,7 +295,7 @@ function LibraryTab({
+   count: number;
+ }) {
+   return (
+-    <TabsTrigger value={value} className="min-h-12 gap-2 rounded-[1rem] px-3 [&_svg]:size-4">
++    <TabsTrigger value={value} className="min-h-11 gap-1.5 rounded-[0.9rem] px-2 text-xs sm:min-h-12 sm:gap-2 sm:rounded-[1rem] sm:px-3 sm:text-sm [&_svg]:size-4">
+       {icon}
+       <span>{label}</span>
+       <span className="rounded-full bg-background/70 px-1.5 text-[10px] tabular-nums">{count}</span>
+@@ -329,7 +329,7 @@ function LibraryContent({
+           ))}
+         </div>
+       ) : mangas.length ? (
+-        <div className="grid grid-cols-2 gap-x-3 gap-y-7 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
++        <div className="grid grid-cols-2 gap-x-2.5 gap-y-6 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+           {mangas.map((manga, index) => {
+             const displayStyle = getCatalogDisplayStyle(displayPreferences, manga.work_type);
+             return displayStyle === "grid" ? (
+diff --git a/src/routes/conta.tsx b/src/routes/conta.tsx
+index 20a8cca..f6695f9 100644
+--- a/src/routes/conta.tsx
++++ b/src/routes/conta.tsx
+@@ -291,17 +291,17 @@ function AccountPage() {
+   }
+ 
+   return (
+-    <main className="mx-auto w-full max-w-4xl px-3 py-7 sm:px-4 sm:py-14">
++    <main className="mx-auto w-full max-w-4xl px-3 pb-[calc(5.5rem+env(safe-area-inset-bottom))] pt-5 sm:px-4 sm:py-14">
+       <div className="space-y-2">
+         <p className="text-sm font-medium text-primary">Minha conta</p>
+-        <h1 className="font-display text-4xl">Preferências do seu jeito</h1>
++        <h1 className="font-display text-3xl leading-tight sm:text-4xl">Preferências do seu jeito</h1>
+         <p className="max-w-2xl text-sm text-muted-foreground">
+           Personalize a leitura, escolha como o "Continuar lendo" aparece e teste mais paletas de cores.
+         </p>
+       </div>
+ 
+-      <Tabs defaultValue={tab} className="mt-8">
+-        <TabsList className="grid h-auto w-full grid-cols-2 p-1 sm:grid-cols-4">
++      <Tabs defaultValue={tab} className="mt-6 sm:mt-8">
++        <TabsList className="grid h-auto w-full grid-cols-2 gap-1 rounded-[1.1rem] p-1 sm:grid-cols-4">
+           <TabsTrigger value="profile">Perfil</TabsTrigger>
+           <TabsTrigger value="reading">Leitura</TabsTrigger>
+           <TabsTrigger value="catalog">Catálogo</TabsTrigger>
+diff --git a/src/routes/index.tsx b/src/routes/index.tsx
+index 9886110..2e35ce1 100644
+--- a/src/routes/index.tsx
++++ b/src/routes/index.tsx
+@@ -481,10 +481,10 @@ function Index() {
+       : WORK_TYPES.find((type) => type.value === workType)?.label ?? "Obras";
+ 
+   return (
+-    <main className="w-full pb-24">
+-      <section className="mx-auto w-[calc(100%_-_1rem)] max-w-[1920px] pt-4 sm:w-[calc(100%_-_2rem)] sm:pt-6 lg:w-[calc(100%_-_3rem)] xl:w-[calc(100%_-_4rem)] 2xl:w-[calc(100%_-_5rem)]">
+-        <div className="grid gap-5 lg:grid-cols-[285px_minmax(0,1fr)] lg:items-stretch xl:grid-cols-[315px_minmax(0,1fr)] 2xl:grid-cols-[335px_minmax(0,1fr)]">
+-          <div className="flex min-h-0 flex-col gap-4 lg:h-full">
++    <main className="w-full pb-[calc(5.5rem+env(safe-area-inset-bottom))] sm:pb-24">
++      <section className="mx-auto w-full max-w-[1920px] px-3 pt-3 sm:px-4 sm:pt-5 lg:px-6 xl:px-8 2xl:px-10">
++        <div className="grid gap-4 lg:grid-cols-[285px_minmax(0,1fr)] lg:items-stretch lg:gap-5 xl:grid-cols-[315px_minmax(0,1fr)] 2xl:grid-cols-[335px_minmax(0,1fr)]">
++          <div className={`${continueReading.length ? "flex" : "hidden"} min-h-0 flex-col gap-3 lg:flex lg:h-full lg:gap-4`}>
+             <ContinueReadingRail
+               items={continueReading}
+               previewMode={continuePreviewMode}
+@@ -494,14 +494,14 @@ function Index() {
+           </div>
+ 
+           <div className="flex min-w-0 flex-col gap-6 lg:gap-7">
+-            <div className="min-h-[390px] lg:h-[500px] xl:h-[520px] 2xl:h-[550px]">
++            <div className="min-h-[320px] sm:min-h-[360px] lg:h-[500px] lg:min-h-0 xl:h-[520px] 2xl:h-[550px]">
+               <LatestUpdatesHero updates={visibleLatestUpdates} workType={workType} />
+             </div>
+ 
+             <section id="catalogo" className="min-w-0">
+-              <div className="mb-4 flex items-center justify-between gap-3">
++              <div className="mb-4 flex items-end justify-between gap-3">
+                 <div className="min-w-0">
+-                  <h1 className="font-display text-2xl font-semibold tracking-tight sm:text-[2rem]">
++                  <h1 className="font-display text-[1.7rem] font-semibold tracking-tight sm:text-[2rem]">
+                     Sua biblioteca
+                   </h1>
+                   <p className="mt-1 truncate text-xs text-muted-foreground sm:text-sm">
+@@ -651,7 +651,7 @@ function Index() {
+                       return (
+                         <div
+                           key={manga.id}
+-                          className="w-[150px] shrink-0 snap-start sm:w-[170px] lg:w-[185px] xl:w-[195px]"
++                          className="w-[44vw] min-w-[142px] max-w-[168px] shrink-0 snap-start sm:w-[170px] sm:max-w-none lg:w-[185px] xl:w-[195px]"
+                         >
+                           <CatalogDisplayCard
+                             manga={manga}
+@@ -696,7 +696,7 @@ function Index() {
+       </section>
+ 
+       {donation?.enabled && (donation.qrUrl || donation.linkUrl) ? (
+-        <section className="mx-auto mt-12 w-[calc(100%_-_1rem)] max-w-[1920px] overflow-hidden rounded-[2rem] border border-border/70 bg-card p-5 shadow-[0_26px_60px_-34px_rgba(0,0,0,0.92)] sm:flex sm:w-[calc(100%_-_2rem)] sm:items-center sm:justify-between sm:p-8 lg:w-[calc(100%_-_3rem)] xl:w-[calc(100%_-_4rem)] 2xl:w-[calc(100%_-_5rem)]">
++        <section className="mx-3 mt-10 max-w-[1920px] overflow-hidden rounded-[1.5rem] border border-border/70 bg-card p-4 shadow-[0_26px_60px_-34px_rgba(0,0,0,0.92)] sm:mx-4 sm:flex sm:items-center sm:justify-between sm:rounded-[2rem] sm:p-8 lg:mx-6 xl:mx-8 2xl:mx-auto">
+           <div className="max-w-xl">
+             <p className="flex items-center gap-2 text-sm font-semibold text-primary">
+               <Heart className="size-4" /> Apoie o Mangaka
+@@ -731,14 +731,14 @@ function Index() {
+ 
+ function DailyReadingCard({ seconds, signedIn }: { seconds: number; signedIn: boolean }) {
+   return (
+-    <div className="relative min-h-[122px] overflow-hidden rounded-[1.55rem] lg:min-h-[145px] border border-border/60 bg-card/55 p-5 shadow-[0_24px_60px_-42px_rgba(0,0,0,.9)] backdrop-blur-xl">
++    <div className="relative min-h-[104px] overflow-hidden rounded-[1.35rem] border border-border/60 bg-card/55 p-4 shadow-[0_24px_60px_-42px_rgba(0,0,0,.9)] backdrop-blur-xl sm:min-h-[122px] sm:rounded-[1.55rem] sm:p-5 lg:min-h-[145px]">
+       <div className="absolute -right-8 -top-10 size-32 rounded-full bg-primary/10 blur-3xl" />
+       <div className="relative flex h-full items-center justify-between gap-4">
+         <div>
+           <p className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+             <Clock3 className="size-4" /> Leitura de hoje
+           </p>
+-          <p className="mt-2 text-3xl font-semibold tracking-tight tabular-nums">
++          <p className="mt-1.5 text-2xl font-semibold tracking-tight tabular-nums sm:mt-2 sm:text-3xl">
+             {signedIn ? formatReadingDuration(seconds) : "—"}
+           </p>
+           <p className="mt-1 text-xs text-muted-foreground">
+@@ -765,7 +765,7 @@ function ContinueReadingRail({
+   const visibleItems = items.slice(0, 4);
+ 
+   return (
+-    <aside className="flex min-h-[360px] flex-1 flex-col overflow-hidden rounded-[1.6rem] border border-border/60 bg-card/65 shadow-[0_26px_70px_-42px_rgba(0,0,0,.9)] backdrop-blur-xl lg:min-h-0">
++    <aside className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1.35rem] border border-border/60 bg-card/65 shadow-[0_26px_70px_-42px_rgba(0,0,0,.9)] backdrop-blur-xl sm:rounded-[1.6rem] lg:min-h-0">
+       <div className="flex items-center justify-between border-b border-border/50 px-4 py-4 sm:px-5">
+         <div>
+           <p className="text-[10px] font-semibold tracking-[0.18em] text-primary uppercase">
+@@ -777,7 +777,7 @@ function ContinueReadingRail({
+       </div>
+ 
+       {visibleItems.length ? (
+-        <div className="flex flex-1 gap-2 overflow-x-auto p-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:p-4 lg:block lg:space-y-1.5 lg:overflow-hidden">
++        <div className="flex flex-1 snap-x snap-mandatory gap-2 overflow-x-auto p-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:p-4 lg:block lg:space-y-1.5 lg:overflow-hidden">
+           {visibleItems.map((item) => (
+             <ContinueReadingRow key={item.volume_id} item={item} previewMode={previewMode} />
+           ))}
+@@ -825,7 +825,7 @@ function ContinueReadingRow({
+     <Link
+       to="/ler/$volumeId"
+       params={{ volumeId: item.volume_id }}
+-      className="group flex w-[245px] shrink-0 items-center gap-3 rounded-2xl border border-transparent p-2 transition hover:border-border/70 hover:bg-background/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:w-full"
++      className="group flex w-[78vw] max-w-[270px] shrink-0 snap-start items-center gap-3 rounded-2xl border border-transparent p-2 transition hover:border-border/70 hover:bg-background/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:w-[245px] lg:w-full lg:max-w-none"
+     >
+       <div className="w-12 shrink-0 overflow-hidden rounded-xl border border-border/50 shadow-sm [&_.book-cover]:rounded-none">
+         <MangaCover
+@@ -883,12 +883,12 @@ function LatestUpdatesHero({
+ 
+   if (!updates.length) {
+     return (
+-      <div className="relative min-h-[390px] overflow-hidden rounded-[1.7rem] border border-white/10 bg-[radial-gradient(circle_at_78%_20%,var(--background-glow),transparent_35%),linear-gradient(125deg,rgba(9,11,16,.98),rgba(23,27,37,.9))] shadow-[0_32px_90px_-42px_rgba(0,0,0,.98)] lg:h-full lg:min-h-0">
+-        <div className="relative z-10 flex min-h-[390px] max-w-2xl flex-col justify-end p-6 sm:p-9 lg:h-full lg:min-h-0">
++      <div className="relative min-h-[320px] overflow-hidden rounded-[1.35rem] sm:min-h-[360px] sm:rounded-[1.7rem] border border-white/10 bg-[radial-gradient(circle_at_78%_20%,var(--background-glow),transparent_35%),linear-gradient(125deg,rgba(9,11,16,.98),rgba(23,27,37,.9))] shadow-[0_32px_90px_-42px_rgba(0,0,0,.98)] lg:h-full lg:min-h-0">
++        <div className="relative z-10 flex min-h-[320px] max-w-2xl flex-col justify-end p-5 sm:min-h-[360px] sm:p-9 lg:h-full lg:min-h-0">
+           <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1.5 text-[10px] font-semibold tracking-[0.14em] text-white/85 uppercase backdrop-blur">
+             <Sparkles className="size-3.5" /> Últimas atualizações
+           </span>
+-          <h1 className="max-w-xl font-display text-4xl font-semibold leading-[0.96] tracking-tight text-white sm:text-5xl">
++          <h1 className="max-w-xl font-display text-3xl font-semibold sm:text-5xl leading-[0.96] tracking-tight text-white sm:text-5xl">
+             Tudo em dia por aqui.
+           </h1>
+           <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/65 sm:text-base">
+@@ -921,13 +921,13 @@ function LatestUpdatesHero({
+   };
+ 
+   return (
+-    <div className="relative min-h-[390px] lg:h-full lg:min-h-0">
++    <div className="relative min-h-[320px] sm:min-h-[360px] lg:h-full lg:min-h-0">
+       <Link
+         to="/manga/$slug"
+         params={{ slug: update.manga.slug }}
+         search={{ invite: "" }}
+         aria-label={`Abrir ${update.manga.title}`}
+-        className="group relative block h-full min-h-[390px] overflow-hidden rounded-[1.7rem] border border-white/10 bg-black shadow-[0_32px_90px_-42px_rgba(0,0,0,.98)] transition duration-300 hover:border-white/20 hover:shadow-[0_36px_100px_-40px_rgba(0,0,0,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:min-h-0"
++        className="group relative block h-full min-h-[320px] overflow-hidden rounded-[1.35rem] sm:min-h-[360px] sm:rounded-[1.7rem] border border-white/10 bg-black shadow-[0_32px_90px_-42px_rgba(0,0,0,.98)] transition duration-300 hover:border-white/20 hover:shadow-[0_36px_100px_-40px_rgba(0,0,0,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:min-h-0"
+       >
+         <div className="absolute inset-0 overflow-hidden [&_.book-cover]:h-full [&_.book-cover]:w-full [&_.book-cover]:rounded-none [&_.book-cover]:object-cover">
+           <div className="absolute inset-0 transition duration-500 group-hover:scale-[1.02]">
+@@ -939,7 +939,7 @@ function LatestUpdatesHero({
+         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/12 to-black/18" />
+         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_20%,rgba(255,214,102,.18),transparent_26%),radial-gradient(circle_at_70%_65%,rgba(255,255,255,.08),transparent_28%)]" />
+ 
+-        <div className="relative z-10 flex min-h-[390px] max-w-[66%] flex-col justify-end p-6 sm:max-w-[58%] sm:p-8 lg:h-full lg:min-h-0 xl:p-9">
++        <div className="relative z-10 flex min-h-[320px] max-w-[84%] flex-col justify-end p-5 sm:min-h-[360px] sm:max-w-[58%] sm:p-8 lg:h-full lg:min-h-0 xl:p-9">
+           <div className="mb-4 flex flex-wrap items-center gap-2">
+             <span className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-black/35 px-3 py-1.5 text-[10px] font-semibold tracking-[0.14em] text-white/90 uppercase backdrop-blur-md">
+               <Sparkles className="size-3.5" /> Últimas atualizações
+@@ -952,7 +952,7 @@ function LatestUpdatesHero({
+           <p className="mb-2 flex items-center gap-1.5 text-[11px] text-white/55">
+             <Clock3 className="size-3.5" /> {relativeUpdateDate(update.createdAt)}
+           </p>
+-          <h1 className="line-clamp-2 max-w-2xl font-display text-4xl font-semibold leading-[0.96] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
++          <h1 className="line-clamp-2 max-w-2xl font-display text-3xl font-semibold sm:text-5xl leading-[0.96] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
+             {update.manga.title}
+           </h1>
+           <p className="mt-3 hidden max-w-xl line-clamp-3 text-sm leading-relaxed text-white/68 sm:block">
+diff --git a/src/routes/ler.$volumeId.tsx b/src/routes/ler.$volumeId.tsx
+index 93a9617..57265d1 100644
+--- a/src/routes/ler.$volumeId.tsx
++++ b/src/routes/ler.$volumeId.tsx
+@@ -802,7 +802,7 @@ function ReaderPage() {
+               </Link>
+             </Button>
+           </div>
+-          <div className="mx-auto grid max-w-3xl grid-cols-3 gap-2 sm:flex sm:justify-center">
++          <div className="mx-auto grid max-w-3xl grid-cols-2 gap-2 min-[420px]:grid-cols-3 sm:flex sm:flex-wrap sm:justify-center">
+             <Button variant="outline" size="sm" className="border-white/15 bg-white/5 text-white hover:bg-white/10 hover:text-white" onClick={() => void enterFullscreen()}>
+               <Maximize2 className="size-4" /> Tela cheia
+             </Button>
+@@ -1112,7 +1112,7 @@ function ReaderPage() {
+       ) : null}
+ 
+       <Dialog open={bookmarkDialogOpen} onOpenChange={setBookmarkDialogOpen}>
+-        <DialogContent className="w-[calc(100%-1.5rem)] max-w-sm rounded-lg p-4 sm:p-6">
++        <DialogContent className="w-[calc(100%_-_1rem)] max-w-sm rounded-2xl p-4 sm:w-full sm:rounded-lg sm:p-6">
+           <DialogHeader>
+             <DialogTitle>Salvar página {index + 1}</DialogTitle>
+             <DialogDescription>Escolha uma coleção ou crie uma nova.</DialogDescription>
+diff --git a/src/routes/manga.$slug.tsx b/src/routes/manga.$slug.tsx
+index 31b5997..63dfe55 100644
+--- a/src/routes/manga.$slug.tsx
++++ b/src/routes/manga.$slug.tsx
+@@ -338,11 +338,11 @@ function MangaPage() {
+   const workTypeLabel = WORK_TYPES.find((type) => type.value === manga.work_type)?.label ?? "Mangá";
+ 
+   return (
+-    <main className="mx-auto w-full max-w-6xl px-3 py-6 sm:px-4 sm:py-10">
+-      <section className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-card/75 p-5 shadow-[0_30px_80px_-42px_rgba(0,0,0,0.92)] backdrop-blur sm:p-7 lg:p-8">
++    <main className="mx-auto w-full max-w-6xl px-3 pb-[calc(5.5rem+env(safe-area-inset-bottom))] pt-5 sm:px-4 sm:py-10">
++      <section className="relative overflow-hidden rounded-[1.45rem] border border-border/70 bg-card/75 p-4 sm:rounded-[2rem] sm:p-7 lg:p-8 shadow-[0_30px_80px_-42px_rgba(0,0,0,0.92)] backdrop-blur sm:p-7 lg:p-8">
+         <div className="absolute -left-14 top-4 size-52 rounded-full bg-primary/15 blur-3xl" />
+         <div className="absolute bottom-0 right-0 size-72 rounded-full bg-white/5 blur-3xl" />
+-        <div className="relative grid gap-8 lg:grid-cols-[320px_1fr]">
++        <div className="relative grid gap-6 sm:gap-8 lg:grid-cols-[320px_1fr]">
+           <div className="mx-auto w-full max-w-[280px] lg:max-w-none">
+             <div className="overflow-hidden rounded-[1.8rem] border border-border/70 bg-background/60 p-3 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.96)]">
+               <MangaCover coverUrl={manga.cover_url} title={manga.title} />
+@@ -365,7 +365,7 @@ function MangaPage() {
+             </div>
+ 
+             <div className="flex flex-wrap items-start justify-between gap-4">
+-              <div className="min-w-0">
++              <div className="min-w-0 flex-1">
+                 <h1 className="font-display text-4xl leading-tight sm:text-5xl">{manga.title}</h1>
+                 <p className="mt-2 text-base text-muted-foreground">{manga.author || "Autor desconhecido"}</p>
+               </div>
+@@ -413,13 +413,13 @@ function MangaPage() {
+               {manga.synopsis}
+             </p>
+ 
+-            <div className="grid gap-3 sm:grid-cols-3">
++            <div className="grid grid-cols-3 gap-2 sm:gap-3">
+               <StatCard label="Volumes concluídos" value={`${completedVolumes}/${volumes.length || 0}`} />
+               <StatCard label="Páginas disponíveis" value={String(totalPages)} />
+               <StatCard label="Leitura" value={continueVolume ? "Pronta para continuar" : "Sem unidades"} />
+             </div>
+ 
+-            <div className="flex flex-wrap gap-3">
++            <div className="grid gap-2 min-[420px]:flex min-[420px]:flex-wrap min-[420px]:gap-3">
+               {continueVolume ? (
+                 <Button asChild>
+                   <Link to="/ler/$volumeId" params={{ volumeId: continueVolume.id }}>
+@@ -438,7 +438,7 @@ function MangaPage() {
+         </div>
+       </section>
+ 
+-      <section id="volumes" className="mt-10 space-y-4">
++      <section id="volumes" className="mt-7 space-y-4 sm:mt-10">
+         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+           <div>
+             <p className="text-sm text-primary">Organização de leitura</p>
+diff --git a/src/routes/planos.tsx b/src/routes/planos.tsx
+index f330203..5e34852 100644
+--- a/src/routes/planos.tsx
++++ b/src/routes/planos.tsx
+@@ -81,7 +81,7 @@ function PlansPage() {
+     },
+   ];
+   return (
+-    <main className="relative mx-auto w-full max-w-5xl px-3 py-8 sm:px-4 sm:py-12">
++    <main className="relative mx-auto w-full max-w-5xl px-3 pb-[calc(5.5rem+env(safe-area-inset-bottom))] pt-5 sm:px-4 sm:py-12">
+       <div className="mb-7 flex justify-end sm:absolute sm:right-4 sm:top-8 sm:mb-0">
+         <div className="flex items-center gap-2 rounded-full border border-border/70 bg-card/70 px-3 py-2 shadow-sm backdrop-blur-md">
+           <span
+@@ -98,7 +98,7 @@ function PlansPage() {
+           <Crown />
+         </span>
+         <p className="mt-5 text-sm font-semibold text-primary">Mangaka Plus</p>
+-        <h1 className="mt-1 font-display text-4xl">Leitura no seu ritmo</h1>
++        <h1 className="mt-1 font-display text-3xl leading-tight sm:text-4xl">Leitura no seu ritmo</h1>
+         <p className="mt-3 text-muted-foreground">
+           Planos para uma experiência mais rápida, personalizada e disponível em qualquer lugar.
+         </p>
+@@ -107,7 +107,7 @@ function PlansPage() {
+       <section className="mt-10" aria-labelledby="available-plans">
+         <div className="text-center">
+           <p className="text-sm font-semibold text-primary">Escolha seu acesso</p>
+-          <h2 id="available-plans" className="mt-1 font-display text-3xl sm:text-4xl">
++          <h2 id="available-plans" className="mt-1 font-display text-[1.75rem] leading-tight sm:text-4xl">
+             Um plano para cada ritmo
+           </h2>
+           <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
+@@ -119,7 +119,7 @@ function PlansPage() {
+           {plans.map((plan) => (
+             <article
+               key={plan.name}
+-              className={`relative flex min-h-80 flex-col overflow-hidden rounded-3xl border p-5 transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-6 ${
++              className={`relative flex min-h-0 flex-col overflow-hidden rounded-[1.4rem] border p-4 transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:min-h-80 sm:rounded-3xl sm:p-6 ${
+                 plan.featured
+                   ? "border-primary bg-gradient-to-br from-primary/[0.14] via-card/90 to-card/75 shadow-xl shadow-primary/15 ring-1 ring-primary/30"
+                   : "border-border/70 bg-card/75"
+diff --git a/src/routes/social.tsx b/src/routes/social.tsx
+index e13ae3f..478a3d6 100644
+--- a/src/routes/social.tsx
++++ b/src/routes/social.tsx
+@@ -203,10 +203,10 @@ function SocialPage() {
+     );
+ 
+   return (
+-    <main className="mx-auto w-full max-w-6xl px-3 py-8 sm:px-4 sm:py-12">
++    <main className="mx-auto w-full max-w-6xl px-3 pb-[calc(5.5rem+env(safe-area-inset-bottom))] pt-5 sm:px-4 sm:py-12">
+       <p className="text-sm font-medium text-primary">Sua comunidade</p>
+       <h1 className="font-display text-3xl sm:text-4xl">Amigos e conversas</h1>
+-      <div className="mt-7 grid gap-5 lg:grid-cols-[340px_1fr]">
++      <div className="mt-5 grid gap-4 sm:mt-7 sm:gap-5 lg:grid-cols-[340px_1fr]">
+         <aside className="space-y-5">
+           <MyFriendCode />
+           <section className="ink-panel rounded-2xl p-4">
+@@ -317,7 +317,7 @@ function SocialPage() {
+             </div>
+           </section>
+         </aside>
+-        <section className="ink-panel flex min-h-[560px] flex-col overflow-hidden rounded-2xl">
++        <section className="ink-panel flex min-h-[460px] flex-col overflow-hidden rounded-2xl sm:min-h-[560px]">
+           {selectedFriend ? (
+             <>
+               <header className="border-b p-4">
+diff --git a/src/styles.css b/src/styles.css
+index a6e8f00..72c967c 100644
+--- a/src/styles.css
++++ b/src/styles.css
+@@ -572,3 +572,73 @@
+ .text-balance {
+   text-wrap: balance;
+ }
++
++/* -------------------------------------------------------------------------- */
++/* Mobile responsiveness                                                     */
++/* -------------------------------------------------------------------------- */
++
++html {
++  width: 100%;
++  max-width: 100%;
++  overflow-x: hidden;
++  -webkit-text-size-adjust: 100%;
++  text-size-adjust: 100%;
++}
++
++body,
++#root {
++  width: 100%;
++  max-width: 100%;
++  min-width: 0;
++}
++
++button,
++a,
++input,
++select,
++textarea {
++  -webkit-tap-highlight-color: transparent;
++}
++
++@media (max-width: 639px) {
++  body {
++    background-attachment: scroll;
++  }
++
++  /* Evita zoom automático do Safari/iOS ao focar campos. */
++  input,
++  select,
++  textarea {
++    font-size: 16px !important;
++  }
++
++  /* Controles confortáveis para toque sem alterar os botões de ícone pequenos. */
++  button:not([data-slot="checkbox"]),
++  [role="button"] {
++    touch-action: manipulation;
++  }
++
++  /* Mantém conteúdos longos, tabelas e códigos dentro da viewport. */
++  pre,
++  code,
++  table {
++    max-width: 100%;
++  }
++
++  pre {
++    overflow-x: auto;
++  }
++
++  /* Os cards principais ficam menos arredondados no celular e ganham área útil. */
++  .ink-panel {
++    border-radius: 1.15rem;
++  }
++}
++
++/* Safe area do PWA/iPhone. */
++@supports (padding: max(0px)) {
++  body {
++    padding-left: env(safe-area-inset-left);
++    padding-right: env(safe-area-inset-right);
++  }
++}

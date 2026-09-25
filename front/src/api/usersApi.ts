@@ -1,0 +1,1 @@
+import { apiRequest } from "./apiClient"; export type Profile={id:string;displayName:string;avatarUrl:string|null}; export const usersApi={me:()=>apiRequest<Profile>("/api/v1/profiles/me"),updateMe:(body:{displayName:string;avatarUrl?:string|null})=>apiRequest<Profile>("/api/v1/profiles/me",{method:"PUT",body:JSON.stringify(body)})};

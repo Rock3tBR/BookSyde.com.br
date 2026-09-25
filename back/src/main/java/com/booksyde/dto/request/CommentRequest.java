@@ -1,0 +1,1 @@
+package com.booksyde.dto.request; import jakarta.validation.constraints.*; import java.util.UUID; public record CommentRequest(UUID volumeId,@NotBlank @Size(max=2000) String body){}

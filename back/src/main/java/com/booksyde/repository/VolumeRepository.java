@@ -1,0 +1,1 @@
+package com.booksyde.repository; import com.booksyde.entity.VolumeEntity; import java.util.*; import org.springframework.data.jpa.repository.JpaRepository; public interface VolumeRepository extends JpaRepository<VolumeEntity,UUID>{List<VolumeEntity> findAllByMangaIdOrderByNumberAsc(UUID mangaId); long countByMangaId(UUID mangaId);}

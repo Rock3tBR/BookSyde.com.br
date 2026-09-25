@@ -1,0 +1,14 @@
+{
+  "name": "booksyde-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["front"],
+  "scripts": {
+    "dev": "npm run dev --workspace=front",
+    "build": "npm run build --workspace=front",
+    "build:dev": "npm run build:dev --workspace=front",
+    "preview": "npm run preview --workspace=front",
+    "lint": "npm run lint --workspace=front",
+    "test": "npm run test --workspace=front"
+  }
+}

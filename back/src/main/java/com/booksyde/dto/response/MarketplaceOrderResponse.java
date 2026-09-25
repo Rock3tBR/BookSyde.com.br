@@ -1,0 +1,1 @@
+package com.booksyde.dto.response; import java.time.OffsetDateTime; import java.util.UUID; public record MarketplaceOrderResponse(UUID id,UUID buyerId,UUID sellerId,String status,int totalCents,String currency,String environment,String checkoutUrl,OffsetDateTime paidAt,OffsetDateTime createdAt){}

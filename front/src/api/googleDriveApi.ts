@@ -1,0 +1,1 @@
+import { apiClient } from "./apiClient"; export const googleDriveApi={listFolder:(folderUrl:string)=>apiClient("/api/v1/integrations/google-drive/folder",{method:"POST",body:JSON.stringify({folderUrl})})};

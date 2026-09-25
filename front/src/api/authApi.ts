@@ -1,0 +1,1 @@
+import { apiRequest } from "./apiClient"; export type CurrentUser={id:string;email:string|null;displayName:string;roles:string[];status:string}; export const authApi={me:()=>apiRequest<CurrentUser>("/api/v1/auth/me")};

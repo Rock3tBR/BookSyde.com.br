@@ -1,0 +1,1 @@
+import { apiClient } from "./apiClient"; export const readingProgressApi={get:(volumeId:string)=>apiClient(`/api/v1/reading-progress/${volumeId}`),save:(volumeId:string,pageIndex:number,completed=false)=>apiClient(`/api/v1/reading-progress/${volumeId}`,{method:"PUT",body:JSON.stringify({pageIndex,completed})})};

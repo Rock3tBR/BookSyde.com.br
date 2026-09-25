@@ -1,0 +1,4 @@
+import { apiRequest } from "./apiClient";
+export type MarketplaceListing={id:string;sellerId:string;mangaId:string|null;title:string;author:string;category:string;coverUrl:string|null;priceCents:number;currency:string;targetType:string;workType:string};
+export type MarketplaceOrder={id:string;buyerId:string;sellerId:string;status:string;totalCents:number;currency:string;environment:string;checkoutUrl:string|null;paidAt:string|null;createdAt:string|null};
+export const marketplaceApi={list:()=>apiRequest<MarketplaceListing[]>("/api/v1/marketplace/public/listings"),orders:()=>apiRequest<MarketplaceOrder[]>("/api/v1/marketplace/orders"),sellerListings:()=>apiRequest<MarketplaceListing[]>("/api/v1/marketplace/seller/listings"),sellerOrders:()=>apiRequest<MarketplaceOrder[]>("/api/v1/marketplace/seller/orders")};

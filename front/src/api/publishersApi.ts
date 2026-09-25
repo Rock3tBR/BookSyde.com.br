@@ -1,0 +1,1 @@
+import { apiRequest } from "./apiClient"; import type { Book } from "./booksApi"; export type PublisherDashboard={works:number;volumes:number;totalViews:number;latestWorks:Book[]}; export const publishersApi={dashboard:()=>apiRequest<PublisherDashboard>("/api/v1/publishers/me/dashboard")};

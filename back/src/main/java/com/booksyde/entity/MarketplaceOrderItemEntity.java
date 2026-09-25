@@ -1,0 +1,3 @@
+package com.booksyde.entity;
+import jakarta.persistence.*; import java.util.UUID;
+@Entity @Table(name="marketplace_order_items",schema="public") public class MarketplaceOrderItemEntity { @Id private UUID id; @Column(name="order_id",nullable=false) private UUID orderId; @Column(name="listing_id") private UUID listingId; @Column(nullable=false) private String title; @Column(name="price_cents",nullable=false) private int priceCents; @Column(nullable=false) private String currency; protected MarketplaceOrderItemEntity(){} public UUID getId(){return id;} public UUID getOrderId(){return orderId;} public UUID getListingId(){return listingId;} public String getTitle(){return title;} public int getPriceCents(){return priceCents;} public String getCurrency(){return currency;} }

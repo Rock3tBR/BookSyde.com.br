@@ -1,0 +1,1 @@
+package com.booksyde.dto.response; import java.time.OffsetDateTime; import java.util.UUID; public record CommentResponse(UUID id,UUID mangaId,UUID volumeId,UUID userId,String body,OffsetDateTime createdAt){}

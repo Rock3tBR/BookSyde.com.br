@@ -1,0 +1,1 @@
+import { apiRequest } from "./apiClient"; export const paymentsApi={checkout:(orderId:string)=>apiRequest<{url:string|null;sessionId:string}>("/api/v1/payments/checkout",{method:"POST",body:JSON.stringify({orderId})})};

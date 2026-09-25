@@ -1,0 +1,1 @@
+package com.booksyde.repository; import com.booksyde.entity.ReviewEntity; import java.util.*; import org.springframework.data.jpa.repository.JpaRepository; public interface ReviewRepository extends JpaRepository<ReviewEntity,UUID>{List<ReviewEntity> findAllByMangaIdOrderByCreatedAtDesc(UUID mangaId); Optional<ReviewEntity> findByUserIdAndMangaId(UUID userId,UUID mangaId);}

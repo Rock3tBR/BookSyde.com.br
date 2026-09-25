@@ -1,0 +1,1 @@
+import { apiClient } from "./apiClient"; export const communityApi={comments:(workId:string,volumeId?:string)=>apiClient(`/api/v1/community/works/${workId}/comments${volumeId?`?volumeId=${volumeId}`:""}`),reviews:(workId:string)=>apiClient(`/api/v1/community/works/${workId}/reviews`)};

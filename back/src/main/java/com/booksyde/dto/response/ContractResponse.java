@@ -1,0 +1,1 @@
+package com.booksyde.dto.response; import java.math.BigDecimal;import java.time.*;import java.util.UUID; public record ContractResponse(UUID id,UUID publisherId,String title,String status,BigDecimal publisherPercentage,BigDecimal booksydePercentage,LocalDate contractDate,LocalDate startsAt,LocalDate endsAt,String fileName,String notes,OffsetDateTime createdAt){}
